@@ -8,6 +8,10 @@ export const Container = styled("main", {
   height: "100vh",
   gridTemplateColumns: "25fr 75fr",
 
+  ".archivesList": {
+    listStyle: "none",
+  },
+
   form: {
     marginTop: "5rem",
   },
