@@ -141,7 +141,7 @@ export default function Categorias({ post }: CategoriesInterface) {
             <Dropzone
               accept={{ "image/*": [".png", ".jpeg", ".jpg"] }}
               onDropAccepted={onDropAccepted}
-              maxFiles={8}
+              maxFiles={10}
               maxSize={5242880}
             >
               {({
@@ -176,38 +176,39 @@ export default function Categorias({ post }: CategoriesInterface) {
               )}
             </Dropzone>
 
-            {files?.length > 0 && (
-              <div className="archivesList">
-                <ul>
-                  <li>
-                    <div className="leftSide">
-                      <div className="imageWrapper">
-                        <Image
-                          src={URL.createObjectURL(files[0])}
-                          alt=""
-                          width={80}
-                          height={80}
-                          style={{ objectFit: "cover" }}
-                        />
+            {files?.length > 0 &&
+              files.map((file) => (
+                <div className="archivesList">
+                  <ul>
+                    <li>
+                      <div className="leftSide">
+                        <div className="imageWrapper">
+                          <Image
+                            src={URL.createObjectURL(file)}
+                            alt=""
+                            width={80}
+                            height={80}
+                            style={{ objectFit: "cover" }}
+                          />
+                        </div>
+
+                        <span>{file.name}</span>
                       </div>
 
-                      <span>{files[0].name}</span>
-                    </div>
-
-                    <div style={{ height: "2rem", width: "2rem" }}>
-                      <CircularProgressbar
-                        value={progressValue}
-                        strokeWidth={15}
-                        styles={buildStyles({
-                          pathColor: "#db542b",
-                          trailColor: "#fff",
-                        })}
-                      />
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            )}
+                      <div style={{ height: "2rem", width: "2rem" }}>
+                        <CircularProgressbar
+                          value={progressValue}
+                          strokeWidth={15}
+                          styles={buildStyles({
+                            pathColor: "#db542b",
+                            trailColor: "#fff",
+                          })}
+                        />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              ))}
           </div>
 
           <Button
